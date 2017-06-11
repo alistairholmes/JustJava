@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
+import static android.R.attr.duration;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 /**
@@ -19,7 +21,7 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
  */
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 2;
+    int quantity = 1;
 
 
     @Override
@@ -93,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the plus button is clicked.
      */
     public void increment(View view) {
+        if (quantity == 100) {
+            //Creates toast to prevent user from ordering more than 100 coffees
+            Toast toast = Toast.makeText(getApplicationContext(), "You cannot have more than 100 coffees", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
         quantity = quantity + 1;
         displayQuantity(quantity);
     }
@@ -101,6 +109,12 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the minus button is clicked.
      */
     public void decrement(View view) {
+        if (quantity == 1) {
+            //Creates toast to prevent negative number when quantity is 1 and the minus button is pressed
+            Toast toast = Toast.makeText(getApplicationContext(), "You cannot have less than 1 coffee", Toast.LENGTH_SHORT);
+            toast.show();
+            return;
+        }
         quantity = quantity - 1;
         displayQuantity(quantity);
     }
