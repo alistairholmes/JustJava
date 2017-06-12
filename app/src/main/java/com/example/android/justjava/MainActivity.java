@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
      *@return string summary of order.
      */
     private String createOrderSummary(Editable name,int price, boolean hasWhippedCream, boolean hasChocolate) {
-        String orderSummary = getString(R.string.order_summary_name, name);
+        String orderSummary = getString(R.string.order_summary_name) + name;
         orderSummary += "\n" + getString(R.string.order_summary_whipped_cream) + hasWhippedCream;
         orderSummary += "\n" + getString(R.string.order_summary_chocolate) + hasChocolate;
         orderSummary += "\n" + getString(R.string.order_summary_quantity) + quantity;
